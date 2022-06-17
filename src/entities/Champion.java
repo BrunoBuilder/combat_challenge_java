@@ -10,7 +10,7 @@ public class Champion {
 	public Champion(String name, Integer life, Integer damage, Integer armor) {
 		this.name = name;
 		this.life = life;
-		attack = damage;
+		this.attack = damage;
 		this.armor = armor;
 	}
 
@@ -34,23 +34,19 @@ public class Champion {
 		if(other.attack > (life + armor)) {
 			life = 0;
 		}
-		else if(armor == other.attack) {
+		else if(armor >= other.attack) {
 			life -= 1;
 		} else {
-			life += armor - other.attack;
+			life = life + armor - other.attack;
 		}
 	}
 	
 	public String status() {
+		String result = name + ": " + life + " life ";
 		if(life == 0) {
-			return "(died)";
+			result += "(died)";
 		}
-		return null;
-	}
-	
-	@Override
-	public String toString() {
-		return name + ": " + life + " life " + status();
+		return result;
 	}
 
 }
